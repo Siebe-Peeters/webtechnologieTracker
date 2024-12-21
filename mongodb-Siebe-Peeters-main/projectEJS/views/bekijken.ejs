@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bekijken</title>
+</head>
+<body>
+    <h1>Overzicht van Transacties</h1>
+    <section>
+        <a href="/bekijken/0"><button type="button">Alle Transacties</button></a>
+        <a href="/bekijken/1"><button type="button">Enkel uitgaven</button></a>
+        <a href="/bekijken/2"><button type="button">Enkel Inkomsten</button></a>
+    </section>
+    <form action="zoek" method="POST">
+        <label for="zoeken">Op speciefieke beschrijving zoeken</label><br>
+        <input type="text" name="zoeken" id="zoeken">
+        <button type="submit">Zoek</button>
+    </form>
+   
+    <ul>
+        <% expenses.forEach((expense) => { %>
+            <% if (expense.isIncoming && sort != 1) { %>
+                <li>
+                    Op <%= expense.date %> is een storting gedaan van €<%= expense.amount %> met beschrijving:
+                    "<%= expense.description %>"
+                    <form action="/<%= expense.id %>/delete" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                    <form action="/<%= expense.id %>/update" method="POST">
+                        <button type="submit">update</button>
+                    </form>
+                </li>
+            <% } else if (expense.isIncoming == false && sort != 2) { %>
+                <li>
+                    Op <%= expense.date %> is een betaling gedaan van €<%= expense.amount %> met beschrijving:
+                    "<%= expense.description %>"
+                    <form action="/<%= expense.id %>/delete" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                    <form action="/<%= expense.id %>/update" method="POST">
+                        <button type="submit">update</button>
+                    </form>
+                </li>
+            <% } %>
+            
+        <% }); %>
+    </ul>
+
+    <a href="http://localhost:3000">Home</a>
+</body>
+</html>

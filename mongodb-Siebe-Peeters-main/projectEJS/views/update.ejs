@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update</title>
+</head>
+<body>
+    <h1>pas hier de nodige velden aan</h1>
+
+    <form action="/toevoegen" method="post">
+
+        <input type="hidden" id="id" name="id" value = <%= expense.id %>>
+
+        <label for="isIncoming">methode:</label><br>
+        <select id="isIncoming" name="isIncoming" >
+            <% if (expense.isIncoming) { %>
+                <option value="storting">Storting</option>
+                <option value="betaling">Betaling</option>
+            <% } else { %>
+                <option value="betaling">Betaling</option>
+                <option value="storting">Storting</option> 
+            <% } %>
+        </select><br>
+    
+        <label for="amount">bedrag:</label><br>
+        <input type="number" id="amount" name="amount" value="<%= expense.amount %>"><br>
+    
+        <label for="description">extra informatie:</label><br>
+        <input type="text" id="description" name="description" value="<%= expense.description %>"><br>
+    
+         <label for="date">wanneer is de transactie uitgevoerd</label><br>
+        <input type="date" id="date" name="date" value="<%= expense.date %>"><br>
+    
+        <label for="currency">de munteenheid (EUR ,USD ,..)</label><br>
+        <input type="text" id="currency" name="currency" value="<%= expense.currency %>"><br>
+    
+        <label for="methode">methode:</label><br>
+        <select id="methode" name="methode">
+            <% if (expense.paymentMethod.method == "cash") { %>
+                <option value="cash">cash</option>
+                <option value="card">card</option>
+                <option value="overschrijving">overschrijving</option>
+            <% } else if (expense.paymentMethod.method == "card") { %>
+                <option value="card">card</option>
+                <option value="cash">cash</option>
+                <option value="overschrijving">overschrijving</option>
+            <% } else{ %>
+                <option value="overschrijving">overschrijving</option>
+                <option value="card">card</option>
+                <option value="cash">cash</option>
+            <% } %>
+            
+        </select><br>
+    
+        <label for="cardNumber">laatste 4 kaartcijfers (bij cash of overschrijving openlaten)</label><br>
+        <input type="text" id="cardNumber" name="cardNumber" value="<%= expense.paymentMethod.cardDetails.cardNumber %>"><br>
+    
+        <label for="expiryDate">vervaldatum (mm/yy) (bij cash of overschrijving openlaten)</label><br>
+        <input type="text" id="expiryDate" name="expiryDate" value="<%= expense.paymentMethod.cardDetails.expiryDate %>"><br>
+    
+        <label for="bankAccountNumber">de bankrekening nummer (enkel bij overschrijving)</label><br>
+        <input type="text" id="bankAccountNumber" name="bankAccountNumber" value="<%= expense.paymentMethod.bankAccountNumber %>"><br>
+    
+        <label for="category">wat was de categorie van de aankoop</label><br>
+        <input type="text" id="category" name="category" value="<%= expense.category %>"><br>
+    
+        
+        <label for="isPaid">is de transactie al voltooid</label><br>
+        <select id="isPaid" name="isPaid">
+            <% if (expense.isPaid) { %>
+                <option value="ja">ja</option>
+                <option value="nee">nee</option>
+            <% } else{ %>
+                <option value="nee">nee</option>
+                <option value="ja">ja</option>            
+            <% } %>
+        </select><br>
+    
+        <button type="submit">update</button>
+    </form>
+</body>
+</html>

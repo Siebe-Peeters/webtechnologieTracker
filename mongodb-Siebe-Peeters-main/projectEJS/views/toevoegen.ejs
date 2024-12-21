@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toevoegen</title>
+</head>
+<body>
+    <h1>vul hier in wat je wil toevoegen</h1>
+
+    <form action="/toevoegen" method="post">
+
+        <input type="hidden" id="id" name="id" value = 0>
+
+        <label for="isIncoming">methode:</label><br>
+        <select id="isIncoming" name="isIncoming">
+            <option value="storting">Storting</option>
+            <option value="betaling">Betaling</option>
+        </select><br>
+    
+        <label for="amount">bedrag:</label><br>
+        <input type="number" id="amount" name="amount"><br>
+    
+        <label for="description">extra informatie:</label><br>
+        <input type="text" id="description" name="description"><br>
+    
+         <label for="date">wanneer is de transactie uitgevoerd</label><br>
+        <input type="date" id="date" name="date"><br>
+    
+        <label for="currency">de munteenheid (EUR ,USD ,..)</label><br>
+        <input type="text" id="currency" name="currency"><br>
+    
+        <label for="methode">methode:</label><br>
+        <select id="methode" name="methode">
+            <option value="cash">cash</option>
+            <option value="card">card</option>
+            <option value="overschrijving">overschrijving</option>
+        </select><br>
+    
+        <label for="cardNumber">laatste 4 kaartcijfers (bij cash of overschrijving openlaten)</label><br>
+        <input type="text" id="cardNumber" name="cardNumber"><br>
+    
+        <label for="expiryDate">vervaldatum (mm/yy) (bij cash of overschrijving openlaten)</label><br>
+        <input type="text" id="expiryDate" name="expiryDate"><br>
+    
+        <label for="bankAccountNumber">de bankrekening nummer (enkel bij overschrijving)</label><br>
+        <input type="text" id="bankAccountNumber" name="bankAccountNumber"><br>
+    
+        <label for="category">wat was de categorie van de aankoop</label><br>
+        <input type="text" id="category" name="category"><br>
+    
+        
+        <label for="isPaid">is de transactie al voltooid</label><br>
+        <select id="isPaid" name="isPaid">
+            <option value="ja">ja</option>
+            <option value="nee">nee</option>
+        </select><br>
+    
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <a href="http://localhost:3000">Home</a>
+</body>
+</html>
+
